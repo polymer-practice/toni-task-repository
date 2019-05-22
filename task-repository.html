@@ -2,12 +2,6 @@
 
 <dom-module id="task-repository">
   <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
-    <h2>Hello [[prop1]]!</h2>
   </template>
 
   <script>
@@ -39,7 +33,7 @@
           },
           updateTask:{
             type: Object,
-            observer: 'updateTask'
+            observer: '_updateTask'
           }
 
         };
@@ -81,20 +75,20 @@
 
 
 
-      updateTask(newValue){
+      _updateTask(newValue){
         let taskEvent = new CustomEvent(
           'task-update', {
           bubbles: true,
           composed: true
         });
-        
-        // Update here
-        console.log('Update task list: ', this.taskList);
 
-        this.taskList.map(function(dato){
-        if(dato.key == key){
-          console.log('key')
+        this.taskList = this.taskList
+        .map(function(dato){
+        if(dato.key === newValue.key){
+          dato = newValue;
         }
+
+        return dato;
       });
 
 
