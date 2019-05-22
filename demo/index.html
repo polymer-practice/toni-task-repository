@@ -29,10 +29,30 @@
 
       <script>
         let element = document.getElementById('repository');
+
         element.addEventListener('page-event', function (e) {
-          console.log(e.detail);
+          // console.log(e.detail);
         });
-        element.offset=6;
+        element.addEventListener('task-created', event => { 
+          //console.log('Task created successfully');
+        })
+
+
+        element.addEventListener('task-update', event => { console.log('Task update'); })
+
+        element.offset = 6;
+        // element.newTask = {
+        //     key: 20,
+        //     title: 'New task',
+        //     canceled: false,
+        //     done: false
+        //   }
+          element.taskUpdate = {
+            key:8,
+            title: 'title update',
+            canceled: false,
+            done: true
+          }
 
       </script>
     </demo-snippet>

@@ -32,13 +32,22 @@
           limit: {
             type: Number,
             value: 0
+          },
+          newTask:{
+            type: Object,
+            observer: 'NewTask'
+          },
+          updateTask:{
+            type: Object,
+            observer: 'updateTask'
           }
+
         };
       }
 
       static get observers() {
         return  ['getPage(offset, limit)']
-        }
+      }
       
 
       getPage(offset, limit) {
@@ -54,6 +63,43 @@
         });
         setTimeout(() => {
           this.dispatchEvent(pageEvent);
+        }, 300);
+      }
+
+      NewTask(newValue){
+        this.taskList.unshift(newValue)
+        let taskEvent = new CustomEvent(
+          'task-created', {
+          bubbles: true,
+          composed: true
+        });
+        // console.log('New task list: ', this.taskList);
+        setTimeout(() => {
+          this.dispatchEvent(taskEvent);
+        }, 300);
+      }
+
+
+
+      updateTask(newValue){
+        let taskEvent = new CustomEvent(
+          'task-update', {
+          bubbles: true,
+          composed: true
+        });
+        
+        // Update here
+        console.log('Update task list: ', this.taskList);
+
+        this.taskList.map(function(dato){
+        if(dato.key == key){
+          console.log('key')
+        }
+      });
+
+
+        setTimeout(() => {
+          this.dispatchEvent(taskEvent);
         }, 300);
       }
 
