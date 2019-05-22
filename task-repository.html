@@ -26,7 +26,7 @@
       static get properties() {
         return {
           offset: {
-            type: String,
+            type: Number,
             value: 0
           },
           limit: {
@@ -37,17 +37,16 @@
       }
 
       static get observers() {
-        return  observer1(propiedad1, propiedad2) {
-          
+        return  ['getPage(offset, limit)']
         }
-      }
+      
 
-      getPage() {
+      getPage(offset, limit) {
         let pageEvent = new CustomEvent('page-event', {
           bubbles: true,
           composed: true,
           detail: {
-            page: this.taskList.slice(this.offset, this.offset - this.limit),
+            page: this.taskList.slice(offset, offset + limit),
             total: this.taskList.length,
             offset: this.offset,
             limit: this.limit
