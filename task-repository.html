@@ -1,0 +1,189 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="task-repository">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    /**
+     * `task-repository`
+     * 
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class TaskRepository extends Polymer.Element {
+      static get is() {
+        return 'task-repository';
+      }
+      static get properties() {
+        return {
+          offset: {
+            type: String,
+            value: 0
+          },
+          limit: {
+            type: Number,
+            value: 0
+          }
+        };
+      }
+
+      static get observers() {
+        return  observer1(propiedad1, propiedad2) {
+          
+        }
+      }
+
+      getPage() {
+        let pageEvent = new CustomEvent('page-event', {
+          bubbles: true,
+          composed: true,
+          detail: {
+            page: this.taskList.slice(this.offset, this.offset - this.limit),
+            total: this.taskList.length,
+            offset: this.offset,
+            limit: this.limit
+          }
+        });
+        setTimeout(() => {
+          this.dispatchEvent(pageEvent);
+        }, 300);
+      }
+
+      constructor() {
+        super();
+        this.taskList = [{
+            key: 0,
+            title: 'To do the weekly shopping',
+            canceled: false,
+            done: false
+          },
+          {
+            key: 1,
+            title: 'Call the dentist',
+            canceled: true,
+            done: false
+          },
+          {
+            key: 2,
+            title: 'Teach Polymer',
+            canceled: false,
+            done: true
+          },
+          {
+            key: 3,
+            title: 'Go at vacations',
+            canceled: false,
+            done: false
+          },
+          {
+            key: 4,
+            title: 'Finish the danger bot',
+            canceled: true,
+            done: false
+          },
+          {
+            key: 5,
+            title: 'Learn scratch',
+            canceled: false,
+            done: true
+          },
+          {
+            key: 6,
+            title: 'Build Skynet',
+            canceled: false,
+            done: false
+          },
+          {
+            key: 7,
+            title: 'Learn to shot a gun',
+            canceled: true,
+            done: false
+          },
+          {
+            key: 8,
+            title: 'To become president of a country',
+            canceled: false,
+            done: true
+          },
+          {
+            key: 9,
+            title: 'To create a communist dictatorship',
+            canceled: false,
+            done: false
+          },
+          {
+            key: 10,
+            title: 'To create a fascist dictatorship.',
+            canceled: true,
+            done: false
+          },
+          {
+            key: 11,
+            title: 'To learn how to ride a hourse',
+            canceled: false,
+            done: true
+          },
+          {
+            key: 12,
+            title: 'Organize a medieval tournament',
+            canceled: false,
+            done: false
+          },
+          {
+            key: 13,
+            title: 'Buy two machinegunns for the medieval tournamente',
+            canceled: true,
+            done: false
+          },
+          {
+            key: 14,
+            title: 'Draw cartoons about a black mouse',
+            canceled: false,
+            done: true
+          },
+          {
+            key: 15,
+            title: 'Draw cartoons about a white duck who needs to go to a speech therapist',
+            canceled: false,
+            done: false
+          },
+          {
+            key: 16,
+            title: 'Draw cartoons about a stupid and stuttering dog',
+            canceled: true,
+            done: false
+          },
+          {
+            key: 17,
+            title: 'Hire a lawyer to avoid copyrights penalty from Disney',
+            canceled: false,
+            done: true
+          },
+          {
+            key: 18,
+            title: 'Buy a laser saber',
+            canceled: false,
+            done: false
+          },
+          {
+            key: 19,
+            title: 'Found a Jedi religion.',
+            canceled: true,
+            done: false
+          }
+        ]
+      }
+    }
+
+    window.customElements.define(TaskRepository.is, TaskRepository);
+  </script>
+</dom-module>
