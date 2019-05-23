@@ -33,12 +33,12 @@
         element.addEventListener('page-event', function (e) {
           console.log(e.detail);
         });
-        element.addEventListener('task-created', event => { 
-          //console.log('Task created successfully');
+        element.addEventListener('task-created', e => { 
+          console.log('Task created successfully');
         })
 
 
-        element.addEventListener('task-update', event => { 
+        element.addEventListener('task-update', e => { 
           console.log('Task update');
           element.offset= 0;
           element.limit= 20;
